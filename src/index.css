@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  margin: 0;
+  font-size: 12px;
+  color: #c1c1c1;
+}
+@font-face {
+  font-family: manrope;
+  src: url(../public/Manrope-Bold.ttf);
+}
+.manrope{
+  font-family: manrope;
+}
+@font-face {
+  font-family: manrope-light;
+  src: url(../public/Manrope-Light.ttf);
+}
+.manrope-light{
+  font-family: manrope-light;
+}
+
+ .button button {
+  cursor: pointer;
+  border-radius: 3rem;
+  padding: 3px 8px;
+  outline: none;
+  border: none;
+  width: max-content;
+  color: rgb(8, 163, 137);
+  background-color: #13221f;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  z-index: 2;
+}
+.button {
+  position: relative;
+  width: 85px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  border-radius: 2.3rem;
+  overflow: hidden;
+}
+  .line {
+  z-index: 1;
+  position: absolute;
+  width: 60px;
+   height: 60px;
+}
+  .line:first-child {
+     background-color: #e76f24;
+   transform: rotate(45deg);
+   margin-top: -1.7rem;
+}
+.line:nth-child(2) {
+     background-color: #2a68b0;
+   transform: rotate(0deg);
+   left: 0;
+   margin-top: 2.5rem;
+   width: 55px;
+}
+  .line:nth-child(3) {
+     background-color: #43ae4a;
+   transform: rotate(0deg);
+   right: 0;
+   margin-top: 2.5rem;
+   width: 40px;
+}
+.index-value{
+  font-family: manrope;
+}
+.text-color-down {
+  color: #F34859;
+}
+.text-color-ref {
+  color: #FF9F41;
+}
+.text-color-ceil {
+  color: #A43EE7;
+}
+.text-color-up {
+  color: #1AAF74;
+}
+.text-color-floor{
+  color: #3FC2EB;
+}
+.price-board-menu-root .price-board-menu-item, .price-board-menu-root .price-board-menu-submenu-title {
+  white-space: nowrap;
+}
+.price-board-menu-root .price-board-menu-item, .price-board-menu-root .price-board-menu-submenu-title {
+  position: relative;
+  margin: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0.5rem 0.375rem;
+  cursor: pointer;
+  border-width: 2px;
+  border-color: transparent;
+  font-size: .75rem;
+  line-height: 1rem;
+}
+.price-board-menu-root .price-board-menu-item, .price-board-menu-root .price-board-menu-submenu-title {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.price-board-wrapper .price-board-header .price-board-menu {
+  display: flex;
+  flex: 1 1;
+}
+.price-board-menu-root {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin-right: 1rem!important;
+  min-height: 36px;
+}
+.input_search_stock{
+  text-transform: uppercase;
+}
+.input_search_stock::placeholder{
+  text-transform: none;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px; /* chiều rộng của thanh cuộn */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #808080; /* màu của thanh cuộn */
+  border-radius: 6px; /* độ cong góc của thanh cuộn */
+  
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent; /* màu nền của phần track của thanh cuộn */
+}
+.input_form_login{
+  position: relative;
+    width: 100%;
+    border: 1px solid rgb(60, 66, 75);
+    border-radius: 4px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(20, 29, 39) !important;
+    height: 32px !important;
+}
+.input__form{
+  background-color: transparent;
+  padding-left: 10px;
+  border: none;
+  outline: none;
+  color: rgb(248, 248, 248);
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: left;
+}
+.button__form_login{
+  width: 100%;
+  box-sizing: border-box;
+    border-radius: 4px;
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    min-width: 64px;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    background-color: #1AAF74;
+}

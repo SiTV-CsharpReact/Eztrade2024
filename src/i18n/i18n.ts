@@ -1,0 +1,42 @@
+import i18n from 'i18next'
+import {initReactI18next} from 'react-i18next';
+// import home_en from './src/locales/en/home.json';
+import HOME_EN  from '../locales/en/home.json';
+import HOME_VI  from '../locales/vi/home.json';
+import REPORT_EN from '../locales/en/report.json';
+import REPORT_VI from '../locales/vi/report.json';
+import LanguageDetector from 'i18next-browser-languagedetector';
+export const locales ={
+    en:'English',
+    vn:'Tiếng Việt'
+}
+export const resources = {
+    VN: {
+      home:HOME_VI,
+      report:REPORT_VI
+    },
+    EN: {
+      home:HOME_EN,
+      report:REPORT_EN
+    }
+  };
+  export const defaultNS = 'home';
+i18n
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(LanguageDetector)
+  .init({
+    resources,
+    ns:['home','report'],
+    defaultNS,
+    detection:{
+      order: [ 'cookie','querystring', 'localStorage'],
+      lookupCookie: 'aspfpt_language',
+      caches: ['cookie'] // chon cookie là language chinh
+     },
+    fallbackLng: 'VN',
+
+
+    interpolation: {
+      escapeValue: false
+    }
+  });

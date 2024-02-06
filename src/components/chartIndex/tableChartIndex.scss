@@ -1,0 +1,29 @@
+.ag-root-wrapper{
+    border-radius: 4px;
+    background-color: #1A1D1F;
+    font-size: 12px;
+    color:#c1c1c1;
+    font-family: manrope;
+    
+    & .ag-root{
+        & .ag-header{
+            & .ag-header-cell-text{
+                color:#c1c1c1
+            }
+            .ag-right-aligned-header .ag-cell-label-container {
+                flex-direction: row;
+            }
+            .ag-right-aligned-header .ag-header-cell-label {
+                flex-direction: row-reverse;
+            }
+        }
+        & .ag-body{
+            & .ag-cell{
+                color:#c1c1c1
+            }
+           
+        }
+    }
+   
+ 
+}

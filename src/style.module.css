@@ -1,0 +1,7 @@
+.iconVietNam {
+    background: url("/public/flag-for-vietnam.svg") no-repeat center center;
+    /* Thêm các thuộc tính CSS khác nếu cần */
+  }
+@import url("/public/flag-for-vietnam.svg") iconVietNam;
+@import url("/public/flag-england.svg") iconEng;
+@import url("/public/logo_fpts.jpg") logoFPTS;
