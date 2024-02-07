@@ -3,11 +3,11 @@ import agent from "../../api/agent";
 import { san_HNX } from "../../configs/app.config";
 import { ObjectMenuHNX } from "../chartIndex/interface/interface.config";
 
-export const fetchHNXMarketAsync = createAsyncThunk<ObjectMenuHNX>(
+export const fetchHNXMarketAsync = createAsyncThunk(
   "market/fetchIndexHNX",
   async () => {
     const responseIndexHNX = await agent.ValueIndex.get(san_HNX)
-    return responseIndexHNX;
+    return responseIndexHNX as ObjectMenuHNX;
   }
 );
 

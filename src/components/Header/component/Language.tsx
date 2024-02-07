@@ -20,13 +20,13 @@ const Language = () => {
     i18n.changeLanguage(lng);
     handleClose();
   };
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+  const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(
     null
   );
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

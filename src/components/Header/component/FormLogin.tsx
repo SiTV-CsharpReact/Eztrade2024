@@ -1,4 +1,4 @@
-import { Modal, Box, Tabs, Tab, Typography, Popover } from "@mui/material";
+import { Modal, Box, Tabs, Tab, Typography } from "@mui/material";
 import QRCodeStyling from "qr-code-styling";
 import React, { memo, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -62,7 +62,7 @@ const FormLogin = () => {
     // Gửi dữ liệu đăng nhập điều này ở đây
   };
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (newValue: number) => {
     setValue(newValue);
   };
 
@@ -122,36 +122,8 @@ const FormLogin = () => {
         </div>
       </div>:<div className="flex">{ProfileAccount.LoginName} <DownIcon/></div>}
      
-{/* 
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        className=" mt-1"
-      >
-        <div className="bg-[#505050] text-white">
-          <LanguageOption
-            label="Tiếng Việt"
-            value="VN"
-            isSelected={Language === "VN"}
-            prop={true}
-          />
-          <LanguageOption
-            label="English"
-            value="EN"
-            isSelected={Language === "EN"}
-            prop={true}
-          />
-        </div>
-      </Popover> */}
-      
-      <Modal
-        open={popupLogin || !isAuthenticated}
+{!isAuthenticated ? <Modal
+        open={popupLogin}
         onClose={() => setPopupLogin(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -170,7 +142,7 @@ const FormLogin = () => {
           <Box sx={{ borderBottom: 1, borderColor: "divider",paddingLeft:'25px' }}>
             <Tabs
               value={value}
-              onChange={handleChange}
+              onChange={()=>handleChange}
               aria-label="basic tabs example"
               textColor="inherit"
               TabIndicatorProps={{ sx: { bgcolor: "#1AA7A4" } }}
@@ -241,7 +213,9 @@ const FormLogin = () => {
             <Box ref={ref} />
           </CustomTabPanel>
         </Box>
-      </Modal>
+      </Modal>:""}
+      
+     
     </>
   );
 };

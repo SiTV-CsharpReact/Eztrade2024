@@ -3,7 +3,6 @@ import { NotiIcon } from "../../ui/icons/NotiIcon";
 import { SetupIcon } from "../../ui/icons/SetupIcon";
 import { CloseIcon } from "../../ui/icons/CloseIcon";
 import Drawer from "@mui/material/Drawer/Drawer";
-import React from "react";
 
 const Noti = () => {
   const [showNoti, setShowNoti] = useState(false);

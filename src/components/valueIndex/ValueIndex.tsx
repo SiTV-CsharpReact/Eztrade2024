@@ -1,7 +1,7 @@
 import React from 'react'
 import { TProps } from '../../model/Index'
 
-const ValueIndex:React.FC<TProps> = ({ name, san }: TProps) => {
+const ValueIndex:React.FC<TProps> = () => {
   return (
     <div className="index-value">
   <div className="flex justify-between">

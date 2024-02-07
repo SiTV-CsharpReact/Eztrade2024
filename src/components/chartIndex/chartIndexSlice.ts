@@ -69,10 +69,25 @@ const initialState: IState = {
 
   status: "loading",
 };
+// Hàm kiểm tra xem dữ liệu có phù hợp với IChartIndex không
+function isValidChartIndex(data: any): data is IChartIndex {
+  return (
+    typeof data === "object" &&
+    "HSX" in data &&
+    "HNX" in data &&
+    "IsWorkingDay" in data
+    // Kiểm tra các thuộc tính khác của IChartIndex nếu có
+  );
+}
 export const fetchChartIndexAsync = createAsyncThunk("chartIndex", async () => {
   try {
     const data = await agent.chartIndex.get();
-    return data;
+    if (isValidChartIndex(data)) {
+      return data as IChartIndex;
+    }
+    else {
+      throw new Error("Dữ liệu không phù hợp với IChartIndex");
+    }
   } catch (error) {
     console.log("error ở đây", error);
   }
@@ -90,17 +105,7 @@ export const fetchConfigChartIndexAsync = createAsyncThunk(
     }
   }
 );
-// export const fetchChartIndexTimeAsync = createAsyncThunk(
-//   "chartIndexTime",
-//   async (dataChartIndex: any) => {
-//     try {
-//       const data = await agent.chartIndex.getTimeSS(dataChartIndex);
-//       return data.data;
-//     } catch (error) {
-//       console.log("error ở đây", error);
-//     }
-//   }
-// );
+
 export const fetchChartIndexCDTAsync = createAsyncThunk(
   "chartIndexCDT",
   async (dataCDT: string) => {
@@ -145,7 +150,7 @@ const chartIndexSlice = createSlice({
           }
 
           if (item.HSX.VNALL.length !== 0) {
-            state.dataChartIndex.HSX.DataFull.VNALL =
+             state.dataChartIndex.HSX.DataFull.VNALL =
               state.dataChartIndex.HSX.DataFull.VNALL.concat(item.HSX.VNALL);
           }
 
@@ -225,7 +230,9 @@ const chartIndexSlice = createSlice({
       })
       .addCase(fetchChartIndexAsync.fulfilled, (state, action) => {
         state.isLoading = true;
-        state.dataChartIndex = action.payload;
+        if (action.payload !== undefined) {
+          state.dataChartIndex = action.payload;
+        }
       })
       .addCase(fetchConfigChartIndexAsync.pending, (state) => {
         state.isLoading = false;

@@ -8,7 +8,7 @@ interface PropConfig {
    
 }
 
-const Logo: React.FC<PropConfig> = ({ height, width, fontSize }) => {
+const Logo: React.FC<PropConfig> = ({ height, fontSize }) => {
   return (
     <div className="flex h-full items-center">
       <img src={LogoFPTSShort} style={{ height: height ?? 28 }} alt="Logo FPTS" />

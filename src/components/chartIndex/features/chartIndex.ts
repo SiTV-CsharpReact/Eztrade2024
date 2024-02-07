@@ -1,11 +1,8 @@
 // import { _getDateTs } from "../util/app.chart";
 import { IChartIndex, IData } from "../interface/interface.config";
-function _getDateTs(dateTime: any): number {
-    var d;
-    d = new Date(dateTime).getTime();
-    return d;
-  }
+
 export function getDataChart(data: IChartIndex, name: string) {
+  console.log(data)
     switch (name) {
       case "VNXALL":
         return [
@@ -175,23 +172,23 @@ export function getDataChart(data: IChartIndex, name: string) {
     }
   }
   
-  export function updateChart(DataTime: any, DataIndex: any) {
-    if (DataTime.SS !== null) {
-      for (const key in DataTime) {
-        if (DataTime.hasOwnProperty(key)) {
-          if (DataIndex.hasOwnProperty(key)) {
-            for (const subKey in DataTime[key]) {
-              if (DataTime[key].hasOwnProperty(subKey)) {
-                // Kiểm tra xem subKey này đã tồn tại trong dataChartIndex[key] chưa
-                if (DataIndex[key].hasOwnProperty(subKey)) {
-                  // Cập nhật dữ liệu từ dataChartIndexTime[key][subKey] vào dataChartIndex[key][subKey]
-                  DataIndex[key][subKey] = DataTime[key][subKey];
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  // export function updateChart(DataTime: any, DataIndex: any) {
+  //   if (DataTime.SS !== null) {
+  //     for (const key in DataTime) {
+  //       if (DataTime.hasOwnProperty(key)) {
+  //         if (DataIndex.hasOwnProperty(key)) {
+  //           for (const subKey in DataTime[key]) {
+  //             if (DataTime[key].hasOwnProperty(subKey)) {
+  //               // Kiểm tra xem subKey này đã tồn tại trong dataChartIndex[key] chưa
+  //               if (DataIndex[key].hasOwnProperty(subKey)) {
+  //                 // Cập nhật dữ liệu từ dataChartIndexTime[key][subKey] vào dataChartIndex[key][subKey]
+  //                 DataIndex[key][subKey] = DataTime[key][subKey];
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   

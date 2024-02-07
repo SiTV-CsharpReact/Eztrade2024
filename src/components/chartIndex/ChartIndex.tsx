@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../store/configStore';
+import {  useAppSelector } from '../../store/configStore';
 import { getDataChart, getPlotLine } from './features/chartIndex';
-import { fetchChartIndexAsync } from './chartIndexSlice';
 import { HighchartsReact } from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import { formatNumber } from '../../util/util';
@@ -20,20 +19,23 @@ import { TProps } from '../../model/Index';
     }
   }
   function _getDateTs(dateTime: any): number {
-    var d;
-    d = new Date(dateTime).getTime();
-    return d;
-  }
+    let d: number = 0; // Khởi tạo biến d với kiểu number và gán giá trị ban đầu là 0
+    if (dateTime instanceof Date) { // Kiểm tra xem dateTime có phải là một đối tượng Date không
+        d = dateTime.getTime(); // Lấy thời gian Unix của dateTime
+    } else if (typeof dateTime === 'string') { // Kiểm tra xem dateTime có kiểu là string không
+        d = new Date(dateTime).getTime(); // Chuyển đổi chuỗi thành đối tượng Date và lấy thời gian Unix
+    }
+    return d; // Trả về giá trị thời gian Unix
+}
+
 const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
-    const dispatch = useAppDispatch();
+  
     const { dataChartIndex } = useAppSelector((state) => state.chartIndex);
     const [dataSpline, setDataSpline] = useState<any>([]);
     const [dataBar, setDataBar] = useState<any>([]);
     const [indexValue, setIndexValue] = useState<number>(0);
     // console.log(indexValue,dataSpline);
-    useEffect(() => {
-        dispatch(fetchChartIndexAsync());
-      }, [dispatch]);
+
     useEffect(() => {
         if (san === "HSX") {
           const data = getDataChart(dataChartIndex, name);
@@ -66,9 +68,14 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
               [0, "#080808"],
               [1, "#a08909"],
             ],
+            reflow: true,
           },
           borderRadius:2,
           backgroundColor: "#1A1D1F",
+        /* The commented lines `// width: 300, // height: 100,` are setting the width and height of the
+        chart. By uncommenting these lines and providing specific values, you can set the width and
+        height of the chart to a fixed size. However, in the current code, these lines are commented
+        out, which means the chart will take up the full width and height of its container element. */
           width: 300,
           height: 100,
           events: {
@@ -289,9 +296,30 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
          
           },
         ],
+        responsive: {
+          rules: [{
+              condition: {
+                  maxWidth: 200
+              },
+              // Make the labels less space demanding on mobile
+              chartOptions: {
+                  
+                  yAxis: {
+                      labels: {
+                          align: 'left',
+                          x: 0,
+                          y: -2
+                      },
+                      title: {
+                          text: ''
+                      }
+                  }
+              }
+          }]
+      }
       };
   return (
-    <HighchartsReact highcharts={Highcharts} options={options} />
+    <HighchartsReact highcharts={Highcharts} options={options}  containerProps={{ style: { width: '100%'} }} />
   )
 }
 
