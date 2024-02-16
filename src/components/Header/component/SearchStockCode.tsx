@@ -28,19 +28,25 @@ const getHighlightedText = (text: string, highlight: string) => {
 function SearchStockCode() {
     const dispatch = useAppDispatch();
     const dataSearchStockCode = useMemo(() => {
-        const storedData = localStorage.getItem('companyData');
-        return storedData ? storedData : '';
-      }, []);
-
-      useEffect(() => {
-        if (!dataSearchStockCode) {
+      return localStorage.getItem('companyData') || '';
+  }, []);
+  const storedData = localStorage.getItem('companyData');
+  useEffect(() => {
+      if (!storedData) {
           // Gửi yêu cầu để lấy dữ liệu nếu không tìm thấy trong localStorage
           dispatch(fetchCompanyAsync());
-        }
+      }
+  }, []);
+  console.log(dataSearchStockCode)
+      // useEffect(() => {
+      //   if (!dataSearchStockCode) {
+      //     // Gửi yêu cầu để lấy dữ liệu nếu không tìm thấy trong localStorage
+      //     dispatch(fetchCompanyAsync());
+      //   }
       
-      }, []);
+      // }, []);
       
-      const dataJson = dataSearchStockCode ? JSON.parse(dataSearchStockCode) : { listStockCode: [] };
+      // const dataJson = dataSearchStockCode ? JSON.parse(dataSearchStockCode) : { listStockCode: [] };
      const inputRef = useRef<HTMLInputElement>(null);
 
      useEffect(() => {
@@ -106,7 +112,7 @@ function SearchStockCode() {
             {/* <input {...getInputProps()} /> */}
             <ul {...getMenuProps()} className="text-black absolute top-10 right-0  z-20 max-h-[400px] w-[400px] custom-scrollbar overflow-y-auto rounded bg-[#646464]">
               {isOpen
-                ? dataJson.listStockCode.filter((item:Company )=> !inputValue || item.Code.startsWith(inputValue.toUpperCase()))
+                ? JSON.parse(dataSearchStockCode).listStockCode.filter((item:Company )=> !inputValue || item.Code.startsWith(inputValue.toUpperCase()))
                     .map((item:Company, index:number) => (
                       
                       <li
