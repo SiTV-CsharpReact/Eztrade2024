@@ -39,7 +39,8 @@ function SearchStockCode() {
         }
       
       }, []);
-     const dataJson = JSON.parse(dataSearchStockCode) || { listStockCode: [] };
+      
+      const dataJson = dataSearchStockCode ? JSON.parse(dataSearchStockCode) : { listStockCode: [] };
      const inputRef = useRef<HTMLInputElement>(null);
 
      useEffect(() => {
