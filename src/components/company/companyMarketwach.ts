@@ -25,17 +25,7 @@ export interface Root {
         const responseCompany: any = await agent.Company.get();
         if (responseCompany) {
           const result: Company[] = JSON.parse(responseCompany);
-  
-        //   const dataCompanyHSX = result.filter(
-        //     (item: Company) => item.Exchange === 1
-        //   );
-        //   const dataCompanyHNX = result.filter(
-        //     (item: Company) => item.Exchange === 2
-        //   );
-        //   const dataCompanyUpcom = result.filter(
-        //     (item: Company) => item.Exchange === 3
-        //   );
-  
+
           const data = {
             listStockCode: result.sort((a: Company, b: Company) =>
               a.Code.localeCompare(b.Code)
@@ -43,8 +33,6 @@ export interface Root {
           
           };
           localStorage.setItem("companyData", JSON.stringify(data));
-          // Thực hiện logic xử lý với 'result' ở đây
-        //   return data;
         }
         return null; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
       } catch (error) {
@@ -80,14 +68,7 @@ export const companySlice = createSlice({
       .addCase(fetchCompanyAsync.fulfilled, (state) => {
         state.productsLoaded = true;
         state.status = 2;
-    //     const data = action.payload;
-    //   if(data){
-    //     state.dataCompanyTotal = data.dataCompanyTotal
-    //     state.dataCompanyHNX = data.dataCompanyHNX
-    //     state.dataCompanyHSX = data.dataCompanyHSX
-    //     state.dataCompanyUpcom = data.dataCompanyUpcom
-    //   }
- 
+        
       })
 
       .addCase(fetchCompanyAsync.rejected, (state) => {
@@ -103,3 +84,14 @@ export const companySlice = createSlice({
 });
 
 export default companySlice;
+  
+        //   const dataCompanyHSX = result.filter(
+        //     (item: Company) => item.Exchange === 1
+        //   );
+        //   const dataCompanyHNX = result.filter(
+        //     (item: Company) => item.Exchange === 2
+        //   );
+        //   const dataCompanyUpcom = result.filter(
+        //     (item: Company) => item.Exchange === 3
+        //   );
+  
