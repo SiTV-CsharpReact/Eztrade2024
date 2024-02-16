@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
-const BASE_URL = "http://marketstream.fpts.com.vn/";
+const BASE_URL = "https://marketstream.fpts.com.vn/";
 
 export interface IRP {
   s: string;
