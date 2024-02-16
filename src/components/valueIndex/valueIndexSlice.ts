@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import agent from "../../api/agent";
 import { san_HNX } from "../../configs/app.config";
-import { ObjectMenuHNX } from "../chartIndex/interface/interface.config";
+import { ObjectMenuHNX } from "../../model/ValueIndex";
 
 export const fetchHNXMarketAsync = createAsyncThunk(
   "market/fetchIndexHNX",
