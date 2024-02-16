@@ -2,9 +2,37 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
-import "./tableChartIndex.scss"
+import "./tableValueIndex.scss"
 import { ColDef } from 'ag-grid-community';
-const TableChartIndex = () => {
+import { memo, useEffect, useState } from "react";
+import Modal from "@mui/material/Modal/Modal";
+import { Box } from "@mui/material";
+import { SettingIcon } from "../ui/icons/SettingIcon";
+import { useAppDispatch, useAppSelector } from "../../store/configStore";
+import { fetchHNXValueIndexAsync, fetchHSXValueIndexAsync } from "./ValueIndex";
+import { CloseIcon } from "../ui/icons/CloseIcon";
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+const TableValueIndex = () => {
+  const { valueIndexHNX,valueIndexHSX } = useAppSelector((state) => state.valueIndex);
+  console.log(valueIndexHNX,valueIndexHSX)
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchHSXValueIndexAsync());
+    dispatch(fetchHNXValueIndexAsync());
+  }, [dispatch]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
     // Row Data: The data to be displayed.
   // const [rowData, setRowData] = useState([
   //   { nameIndex: "UPCOM", pointIndex: "1,169.59", updownIndex: -10.15, KLGD: 107.461,GTGD: -10.15,StockUpDown:true},
@@ -53,13 +81,27 @@ const TableChartIndex = () => {
     scrollbarWidth: 8,
     // other grid options ...
 }
-  const gridStyle = {  width: "100%",height:'100%' };
+  const gridStyle = {height:'100%' };
   return (
       <div style={gridStyle} className="ag-theme-alpine-dark table__price mx-0.5 rounded bg-backgroundDark relative">
-        <button type="button" className="absolute top-0 left-0 z-10 p-1.5 text-color-primary hover:text-color-highlight" data-for="priceBoardFunctions" data-tip="Nhấn để chọn các chỉ số"><svg stroke="currentColor" fill="#c1c1c1" stroke-width="0" viewBox="0 0 512 512" className="text-10" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 176a80 80 0 1080 80 80.24 80.24 0 00-80-80zm172.72 80a165.53 165.53 0 01-1.64 22.34l48.69 38.12a11.59 11.59 0 012.63 14.78l-46.06 79.52a11.64 11.64 0 01-14.14 4.93l-57.25-23a176.56 176.56 0 01-38.82 22.67l-8.56 60.78a11.93 11.93 0 01-11.51 9.86h-92.12a12 12 0 01-11.51-9.53l-8.56-60.78A169.3 169.3 0 01151.05 393L93.8 416a11.64 11.64 0 01-14.14-4.92L33.6 331.57a11.59 11.59 0 012.63-14.78l48.69-38.12A174.58 174.58 0 0183.28 256a165.53 165.53 0 011.64-22.34l-48.69-38.12a11.59 11.59 0 01-2.63-14.78l46.06-79.52a11.64 11.64 0 0114.14-4.93l57.25 23a176.56 176.56 0 0138.82-22.67l8.56-60.78A11.93 11.93 0 01209.94 26h92.12a12 12 0 0111.51 9.53l8.56 60.78A169.3 169.3 0 01361 119l57.2-23a11.64 11.64 0 0114.14 4.92l46.06 79.52a11.59 11.59 0 01-2.63 14.78l-48.69 38.12a174.58 174.58 0 011.64 22.66z"></path></svg></button>
+        <button type="button" onClick={handleOpen} className="absolute top-0 left-0 z-10 p-1.5 text-color-primary hover:text-color-highlight" data-for="priceBoardFunctions" data-tip="Nhấn để chọn các chỉ số"><SettingIcon/></button>
     <AgGridReact className='rounded' rowData={rowData} columnDefs={colDefs}   gridOptions={gridOptions}  scrollbarWidth={8}/>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="flex justify-between">
+          <div>Chỉ số chính</div>
+          <CloseIcon/>
+          </div>
+        
+        </Box>
+      </Modal>
     </div>
   )
 }
 
-export default TableChartIndex
+export default memo(TableValueIndex)

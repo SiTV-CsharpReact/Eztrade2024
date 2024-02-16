@@ -43,7 +43,7 @@ const chartIndex = {
   getCDT: (value_getCDT: string) => requests.get<string[]>(BASE_URL + `/chart/data.ashx?s=${value_getCDT}`),
 };
 const ValueIndex = {
-  get: (floor:string) => requests.get(`${floor}/data.ashx?s=index`),
+  get: (floor:string) => requests.get(BASE_URL+`${floor}/data.ashx?s=index`),
 };
 // get cache data stock info
 const Company = {

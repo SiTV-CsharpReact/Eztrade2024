@@ -203,3 +203,14 @@ body{
   border-radius: 4px;
   background: #ccc
 }
+.form-control .input-control {
+  border-radius: 0.25rem;
+  background-color: var(--color-theme-input-background);
+  border-width: 1px;
+  border-color:#4d5259;
+  font-size: .813rem;
+  line-height: 1.125rem;
+  width: 100%;
+  /* padding-left: 0.5rem;
+  padding-right: 0.5rem; */
+  min-height: 2rem;}

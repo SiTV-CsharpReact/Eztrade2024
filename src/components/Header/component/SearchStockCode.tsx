@@ -3,7 +3,8 @@ import Downshift from "downshift"
 import { useAppDispatch } from "../../../store/configStore";
 import { setStatusTradingView } from "../../chartTradingView/tradingViewSlice";
 import { memo, useEffect, useMemo, useRef } from "react";
-import { Company } from "../../company/companyMarketwach";
+import { Company, fetchCompanyAsync } from "../../company/companyMarketwach";
+import { SearchIcon } from "../../ui/icons/SearchIcon";
 const getHighlightedText = (text: string, highlight: string) => {
     const input = highlight.toLowerCase();
     const startIndex = text.toLowerCase().indexOf(input);
@@ -29,6 +30,14 @@ function SearchStockCode() {
     const dataSearchStockCode = useMemo(() => {
         const storedData = localStorage.getItem('companyData');
         return storedData ? storedData : '';
+      }, []);
+
+      useEffect(() => {
+        if (!dataSearchStockCode) {
+          // Gửi yêu cầu để lấy dữ liệu nếu không tìm thấy trong localStorage
+          dispatch(fetchCompanyAsync());
+        }
+      
       }, []);
      const dataJson = JSON.parse(dataSearchStockCode) || { listStockCode: [] };
      const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +89,10 @@ function SearchStockCode() {
           selectedItem
         }) => (
           <div className="relative">
-               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="text-sm absolute ml-1 top-1.5 left-1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"></path></g></svg>
+            <div className="absolute ml-1 top-1.5 left-1">
+            <SearchIcon/>
+            </div>
+          
             <input
              {...getInputProps()} 
                   className="bg-[#3f4044] pl-6 p-1 rounded mx-1 input_search_stock max-w-36"

@@ -1,0 +1,28 @@
+.popupIndexValue{
+    height: 400px;
+    overflow-x: auto;
+}
+.popupIndexValue::-webkit-scrollbar {
+    width: 6px;
+    /* Chiều rộng của thanh cuộn */
+  }
+  
+  /* Định dạng thanh cuộn */
+  .popupIndexValue::-webkit-scrollbar-track {
+   
+    /* Màu nền của thanh cuộn */
+  }
+  
+  /* Định dạng "gờ" của thanh cuộn */
+  .popupIndexValue::-webkit-scrollbar-thumb {
+    background-color: #d4d0d0;
+    /* Màu nền của "gờ" */
+    border-radius: 5px;
+    /* Đường viền cong của "gờ" */
+  }
+  
+  /* Khi di chuột qua thanh cuộn */
+  .popupIndexValue::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Màu nền của "gờ" khi di chuột qua */
+  }

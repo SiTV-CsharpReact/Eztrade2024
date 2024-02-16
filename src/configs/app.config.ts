@@ -2,6 +2,7 @@ export const san_HNX = "hnx";
 export const san_HSX = "hsx";
 export const COOKIE_SESSION_NAME = "aspfpt_sessiontoken";
 export const FEE_RATE_TP = "0.0005";
+export const listSettingIndex = [ "VNXALL",  "VNI",  "VN30",  "VN100",  "VNALL",  "VNMID",  "VNSML",   "HNX",  "HNX30",  "HNXLCAP",  "HNXSMCAP",  "HNXFIN",  "HNXMAN",  "HNXCON",  "UPCOM"];
 export const g_arrHOMarketStatus = [
     ["P", "Bắt đầu đợt KL định kỳ mở cửa", "ATO"],
     ["O", "Bắt đầu đợt KL lien tục", "Liên tục"],

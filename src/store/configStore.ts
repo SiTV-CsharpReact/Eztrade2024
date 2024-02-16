@@ -5,12 +5,20 @@ import companySlice from "../components/company/companyMarketwach";
 import TradingViewSlice from "../components/chartTradingView/tradingViewSlice";
 import configSlice from "../components/configSlice";
 import loginSlice from "../components/loginSlice";
+import ValueIndexSlice from "../components/TableValueIndex/ValueIndex";
+import settingIndexSlice from "../components/settingIndexSlice";
+
+
 export const store = configureStore({
     reducer: {
      // liststockcode
     Company:companySlice.reducer,
    // chart index
     chartIndex: chartIndexSlice.reducer,
+    // index
+    valueIndex: ValueIndexSlice.reducer,
+    // setting index
+    settingIndex : settingIndexSlice.reducer,
     //chart TradingView
     chartTradingView: TradingViewSlice.reducer,
     //set language color

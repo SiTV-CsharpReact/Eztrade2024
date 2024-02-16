@@ -63,10 +63,11 @@ const initialState: IState = {
     Max: 0,
     SS: null,
   },
+  dataValueIndex:{},
   configChartIndex: "",
   Max: "",
   timeGet: "",
-
+ 
   status: "loading",
 };
 // Hàm kiểm tra xem dữ liệu có phù hợp với IChartIndex không
@@ -79,6 +80,20 @@ function isValidChartIndex(data: any): data is IChartIndex {
     // Kiểm tra các thuộc tính khác của IChartIndex nếu có
   );
 }
+export const fetchValueIndexAsync = createAsyncThunk("chartIndex", async () => {
+  try {
+    const data = await agent.ValueIndex.get("HNX");
+    return data;
+    // if (isValidChartIndex(data)) {
+    //   return data as IChartIndex;
+    // }
+    // else {
+    //   throw new Error("Dữ liệu không phù hợp với IChartIndex");
+    // }
+  } catch (error) {
+    console.log("error ở đây", error);
+  }
+});
 export const fetchChartIndexAsync = createAsyncThunk("chartIndex", async () => {
   try {
     const data = await agent.chartIndex.get();
@@ -99,7 +114,7 @@ export const fetchConfigChartIndexAsync = createAsyncThunk(
       const data = await agent.chartIndex.getSS();
     //   const regex = /var\s+g_CHART_MAX_INDEX_SS\s*=\s*'([^']+)'/;
     //   const match = data.match(regex);
-      return data;
+      return data as object;
     } catch (error) {
       console.log("error ở đây", error);
     }
@@ -238,7 +253,8 @@ const chartIndexSlice = createSlice({
         state.isLoading = false;
         state.status = "loading";
       })
- 
+    
+    
  
   },
 });
