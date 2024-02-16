@@ -34,7 +34,7 @@ function SearchStockCode() {
         const storedData = localStorage.getItem("companyData");
         if (!storedData) {
           const data = await agent.Company.get();
-          localStorage.setItem("companyData", JSON.stringify(data));
+          localStorage.setItem("companyData", data as string);
           setDataSearchStockCode(data as string);
         } else {
           // Nếu có dữ liệu trong localStorage, cập nhật state dataSearchStockCode
