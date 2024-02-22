@@ -61,6 +61,7 @@ export interface IIndex {
     // prior_textbox_qtyF: true,
   };
 interface settingIndex {
+    viewIndex:string[];
     listSettingIndex:string[];
     settingIndex:IIndex;
 }
@@ -69,6 +70,7 @@ const data =
     ? JSON.parse(localStorage.getItem("setting_table") as string)
     : INDEX_TYPE;
 const initialState: settingIndex = {
+    viewIndex:["VNXALL:HSX",  "VNI:HSX",  "VN30:HSX",  "VN100:HSX"],
     listSettingIndex : [ "VNXALL",  "VNI",  "VN30",  "VN100",  "VNALL",  "VNMID",  "VNSML",   "HNX",  "HNX30",  "HNXLCAP",  "HNXSMCAP",  "HNXFIN",  "HNXMAN",  "HNXCON",  "UPCOM"],
     settingIndex: data as IIndex
 };
@@ -76,12 +78,17 @@ const settingIndexSlice = createSlice({
   name: "config/settingIndex",
   initialState,
   reducers: {
-    settingIndexValue: (state, action:PayloadAction<IIndex>) => {
+     settingIndexValue: (state, action:PayloadAction<IIndex>) => {
         state.settingIndex = action.payload;     
         localStorage.setItem("setting_index", JSON.stringify(state.settingIndex));
       },
+     changeIndexValue: (state, action) =>{
+        //  const listViewIndex = state.viewIndex;
+        state.viewIndex = action.payload;
+        //  console.log(listViewIndex)
+     }
   },
 });
 
-export const { settingIndexValue } = settingIndexSlice.actions;
+export const { settingIndexValue,changeIndexValue } = settingIndexSlice.actions;
 export default settingIndexSlice;

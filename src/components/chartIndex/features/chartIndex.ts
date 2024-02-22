@@ -2,7 +2,7 @@
 import { IChartIndex, IData } from "../interface/interface.config";
 
 export function getDataChart(data: IChartIndex, name: string) {
-  console.log(data)
+  // console.log(data)
     switch (name) {
       case "VNXALL":
         return [

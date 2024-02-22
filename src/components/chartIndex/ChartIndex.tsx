@@ -28,8 +28,7 @@ import { TProps } from '../../model/Index';
     return d; // Trả về giá trị thời gian Unix
 }
 
-const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
-  
+const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => { 
     const { dataChartIndex } = useAppSelector((state) => state.chartIndex);
     const [dataSpline, setDataSpline] = useState<any>([]);
     const [dataBar, setDataBar] = useState<any>([]);
@@ -98,6 +97,9 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
             },
             
           },
+        },
+        accessibility: {
+          enabled: false // Tắt tính năng khả năng truy cập
         },
         title: {
           text: "",
