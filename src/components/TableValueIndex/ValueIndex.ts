@@ -59,14 +59,15 @@ export const ValueIndexSlice = createSlice({
               const splittedKey = key.split("_"); // Tách key bằng dấu '_'
               const propName = splittedKey.slice(1).join("_"); // Lấy phần sau khi đã tách
               obj[propName] = data[key]; // Gán giá trị vào đối tượng với key mới
-              obj.IndexId = settingIndex;
-              obj.Exchange = "HSX";
             }
-            
+           
           }
           if (hasMatchingProperty) {
+            obj.IndexId = settingIndex;
+            obj.Exchange = "HSX";
        // Thêm thuộc tính StockCode nếu có ít nhất một thuộc tính phù hợp
-            vniObjects.push(obj); // Thêm đối tượng vào mảng nếu có ít nhất một thuộc tính phù hợp
+            vniObjects.push(obj);
+            console.log(vniObjects) // Thêm đối tượng vào mảng nếu có ít nhất một thuộc tính phù hợp
           }
          // Thêm thuộc tính StockCode
           // Thêm đối tượng vào mảng

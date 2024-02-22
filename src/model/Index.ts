@@ -8,6 +8,7 @@ export type TProps = {
   //   listIndex?:Index[];
   // }
   export type Index = {
+    [key: string]: any;
     ChangePercent: string
     IndexId: string
     Exchange: string
