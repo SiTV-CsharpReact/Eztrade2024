@@ -24,4 +24,5 @@ export type TProps = {
     Ceiling: string
     Floor: string
     Time: string
+    ControlCode:string;
   }

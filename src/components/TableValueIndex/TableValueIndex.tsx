@@ -38,7 +38,7 @@ const TableValueIndex = () => {
       headerName: "CK Tăng/Giảm",
       width: 120,
       cellRenderer: (params: any) => {
-        console.log(params);
+        // console.log(params);
         return (
           <div className="stock-info flex justify-between">
             <div className="flex-1 flex items-center space-x-0.5">

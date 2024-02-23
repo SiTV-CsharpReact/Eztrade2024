@@ -7,6 +7,11 @@ import { useAppDispatch, useAppSelector } from "../../store/configStore";
 import { ClearIcon } from "../ui/icons/ClearIcon";
 import "./valueIndex.scss";
 import { changeIndexValue } from "../settingIndexSlice";
+import { fStatusMarketHSX, setColorMenuMarket } from "../../util/util";
+// import { UpIcon } from "../ui/icons/UpIcon";
+import { DownIcon } from "../ui/icons/DownIcon";
+import { UpIndexIcon } from "../ui/icons/UpIndexIcon";
+import { DownIndexIcon } from "../ui/icons/DownIndexIcon";
 const style = {
   position: "absolute",
   top: "50%",
@@ -69,44 +74,16 @@ const ValueIndex: React.FC<TProps> = ({ name, san, index, data }: TProps) => {
               <span className="ellipsis-wrap whitespace-nowrap overflow-hidden">
                 {name}
               </span>
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth={0}
-                viewBox="0 0 24 24"
-                className="inline text-sm"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path fill="none" d="M0 0h24v24H0V0z" />
-                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-              </svg>
+             <DownIcon color="#c1c1c1"/>
             </button>
-            <div className="flex items-center whitespace-nowrap text-color-down">
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth={0}
-                viewBox="0 0 20 20"
-                className="inline"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {value?.IndexValue} ({value?.Change} {value?.ChangePercent})
-       
+            <div className={`flex items-center whitespace-nowrap ${setColorMenuMarket(value?.Change)}`}>
+            {setColorMenuMarket(value?.Change) ==="text-color-down"? <DownIndexIcon/>:<UpIndexIcon/>}    
+              {value?.IndexValue} ({value?.Change} {value?.ChangePercent}%)
             </div>
           </div>
           <div className="flex justify-between">
-            <div>1,112,337,687 CP</div>
-            <div>23,175.072 Tỷ</div>
+            <div>{value?.TotalSharesAOM} CP</div>
+            <div>{value?.TotalValuesAOM} tỷ</div>
           </div>
           <div className="stock-info flex justify-between">
             <div className="flex-1 flex items-center space-x-0.5">
@@ -146,28 +123,13 @@ const ValueIndex: React.FC<TProps> = ({ name, san, index, data }: TProps) => {
             </div>
             <div className="flex-1 flex items-center justify-center space-x-0.5">
               <span className="text-color-down inline-flex items-center">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth={0}
-                  viewBox="0 0 20 20"
-                  className="inline"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+            <DownIndexIcon/>
                 {value?.Down}
               </span>
               <span className="inline text-color-floor"> ({value?.Floor})</span>
             </div>
             <div className="flex-1 text-right whitespace-nowrap pl-1">
-              Phiên GDTT
+            {fStatusMarketHSX(value.ControlCode)}
             </div>
           </div>
         </div>:""

@@ -65,10 +65,12 @@ export const ValueIndexSlice = createSlice({
           if (hasMatchingProperty) {
             obj.IndexId = settingIndex;
             obj.Exchange = "HSX";
+            obj.ControlCode = data.STAT_ControlCode
        // Thêm thuộc tính StockCode nếu có ít nhất một thuộc tính phù hợp
             vniObjects.push(obj);
-            console.log(vniObjects) // Thêm đối tượng vào mảng nếu có ít nhất một thuộc tính phù hợp
+           // Thêm đối tượng vào mảng nếu có ít nhất một thuộc tính phù hợp
           }
+          //console.log(vniObjects)
          // Thêm thuộc tính StockCode
           // Thêm đối tượng vào mảng
         }
