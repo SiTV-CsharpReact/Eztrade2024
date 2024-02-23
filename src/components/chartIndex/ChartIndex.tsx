@@ -3,7 +3,7 @@ import { useAppSelector } from "../../store/configStore";
 import { getDataChart, getPlotLine } from "./features/chartIndex";
 import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
-import { _getDateTs} from "../../util/util";
+import { _getDateTs, formatNumber, formatNumberToM } from "../../util/util";
 import { TProps } from "../../model/Index";
 
 const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
@@ -12,7 +12,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
   const [dataBar, setDataBar] = useState<any>([]);
   const [indexValue, setIndexValue] = useState<number>(0);
   //console.log('index Value:'+indexValue,'index line:'+dataSpline, 'index dataBar:'+dataBar);
-  console.log(indexValue,dataSpline,dataBar);
+  console.log(indexValue, dataSpline, dataBar);
   useEffect(() => {
     if (san === "HSX") {
       const data = getDataChart(dataChartIndex, name);
@@ -138,7 +138,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
             color: "#6F767E",
             width: 1.5,
             value: indexValue,
-            zIndex: 10,
+            zIndex: 1,
             dashStyle: "ShortDash",
             label: {
               text: indexValue,
@@ -165,6 +165,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
       borderColor: "#07d800",
       borderRadius: 5,
       borderWidth: 1,
+      zIndex: 2,
       padding: 6,
       useHTML: true,
       style: {
@@ -175,6 +176,42 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
         top: 400,
       },
       shared: true,
+      formatter: function (this: Highcharts.TooltipFormatterContextObject) {
+        const points = this.points;
+        const index: any = points?.map((point, ind) => {
+          if (ind === 1) {
+            if (point.y !== null && point.y !== undefined) {
+              if (point.y >= indexValue) {
+                point.series.chart.tooltip.options.borderColor = "#07d800";
+              } else {
+                point.series.chart.tooltip.options.borderColor = "red";
+              }
+              return { x: point.x, y: point.y };
+            }
+          }
+          return "";
+        });
+
+        const hour: any = new Date(Number(index[1].x)).getHours();
+        const minutes =
+          new Date(Number(index[1].x)).getMinutes().toString().length === 1
+            ? "0" + new Date(Number(index[1].x)).getMinutes()
+            : new Date(Number(index[1].x)).getMinutes();
+
+        return `
+           
+            <span style="color:#000">Thời gian: <b style="font-size:12px;font-weight:600;color:#000" class="font-bold text-sm">${
+              hour + ":" + minutes
+            }</b></span><br/><span style="color:#000">Index:  <b style="font-size:12px;color:#000" class="font-bold text-sm">${
+          index[1].y
+        }</b></span><br/>${
+          this.y === 0
+            ? ""
+            : `<span style="color:#000">Khối lượng: <b style="font-size:12px;color:#000" class="font-bold text-sm">${formatNumber(
+                formatNumberToM(this.y)
+              )} </b></span>`
+        } `;
+      },
     },
     legend: {
       symbolPadding: 0,
@@ -186,7 +223,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
     plotOptions: {
       spline: {
         color: "#1AAF74",
-      
+
         lineWidth: 1.5,
         marker: {
           enabled: false,
@@ -214,7 +251,6 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
             color: "#1AAF74",
           },
         ],
-      
       },
       column: {
         color: "#3b82f680",
@@ -240,7 +276,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
         type: "spline",
         yAxis: 1,
         data: dataSpline,
-      
+
         fillColor: {
           linearGradient: [0, 0, 0, 300],
           stops: [
@@ -250,34 +286,34 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
         },
       },
     ],
-    // responsive: {
-    //   rules: [
-    //     {
-    //       condition: {
-    //         maxWidth: 200,
-    //       },
-    //       // Make the labels less space demanding on mobile
-    //       chartOptions: {
-    //         yAxis: {
-    //           labels: {
-    //             align: "left",
-    //             x: 0,
-    //             y: -2,
-    //           },
-    //           title: {
-    //             text: "",
-    //           },
-    //         },
-    //       },
-    //     },
-    //   ],
-    // },
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 200,
+          },
+          // Make the labels less space demanding on mobile
+          chartOptions: {
+            yAxis: {
+              labels: {
+                align: "left",
+                x: 0,
+                y: -2,
+              },
+              title: {
+                text: "",
+              },
+            },
+          },
+        },
+      ],
+    },
   };
   return (
     <HighchartsReact
       highcharts={Highcharts}
       options={options}
-     // containerProps={{ style: { width: "100%" } }}
+      containerProps={{ style: { width: "100%" } }}
     />
   );
 };
