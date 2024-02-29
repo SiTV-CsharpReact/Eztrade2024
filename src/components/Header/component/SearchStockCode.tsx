@@ -24,8 +24,11 @@ const getHighlightedText = (text: string, highlight: string) => {
   );
   // };
 };
-
-function SearchStockCode() {
+type TProps = {
+  index?:string,
+  features?:string
+};
+const SearchStockCode: React.FC<TProps> = ({ index}: TProps) => {
   const dispatch = useAppDispatch();
   const [dataSearchStockCode, setDataSearchStockCode] = useState("");
   useEffect(() => {
@@ -116,7 +119,7 @@ function SearchStockCode() {
           {/* <input {...getInputProps()} /> */}
           <ul
             {...getMenuProps()}
-            className="text-black absolute top-10 right-0  z-20 max-h-[400px] w-[400px] custom-scrollbar overflow-y-auto rounded bg-[#646464]"
+            className={`text-black absolute top-10 ${index =="left"?`left-0`:`right-0`}  z-20 max-h-[400px] w-[400px] custom-scrollbar overflow-y-auto rounded bg-[#646464]`}
           >
             {isOpen
               ? dataSearchStockCode &&

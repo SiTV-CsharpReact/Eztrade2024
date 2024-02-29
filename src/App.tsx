@@ -11,6 +11,7 @@ function App() {
         <IndexMarketWatch/>
    {/* table    */}
       <TableMarketWatch />
+      {/* <ChartJSTest/> */}
     </>
   );
 }

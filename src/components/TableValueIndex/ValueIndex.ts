@@ -2,11 +2,11 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import agent from "../../api/agent";
 
-import { listSettingIndex, san_HSX } from "../../configs/app.config";
+import { listSettingIndex, san_HNX, san_HSX } from "../../configs/app.config";
 import { ObjectMenuHNX, ObjectMenuHSX } from "../../model/ValueIndex";
 import { Index } from "../../model/Index";
 // san HSX
-export const fetchHNXValueIndexAsync = createAsyncThunk(
+export const fetchHSXValueIndexAsync = createAsyncThunk(
   "market/fetchvalueIndexHNX",
   async () => {
     const responseHSX = await agent.ValueIndex.get(san_HSX);
@@ -15,10 +15,10 @@ export const fetchHNXValueIndexAsync = createAsyncThunk(
   }
 );
 // san HSX
-export const fetchHSXValueIndexAsync = createAsyncThunk(
+export const fetchHNXValueIndexAsync = createAsyncThunk(
   "market/fetchvalueIndexHSX",
   async () => {
-    const responseHSX = await agent.ValueIndex.get(san_HSX);
+    const responseHSX = await agent.ValueIndex.get(san_HNX);
     // console.log(responseHSX)
     return responseHSX as ObjectMenuHSX;
   }
@@ -41,10 +41,10 @@ export const ValueIndexSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHNXValueIndexAsync.pending, (state) => {
+      .addCase(fetchHSXValueIndexAsync.pending, (state) => {
         state.statusMarket = "loading";
       })
-      .addCase(fetchHNXValueIndexAsync.fulfilled, (state, action:any) => {
+      .addCase(fetchHSXValueIndexAsync.fulfilled, (state, action:any) => {
         state.isLoadingMarket = true;
         state.statusMarket = "success";
         const vniObjects = [] ;
@@ -79,20 +79,20 @@ export const ValueIndexSlice = createSlice({
         state.valueIndexHNX = action.payload;
         //console.log(state.valueIndexHNX.valueHSX);
       })
-      .addCase(fetchHNXValueIndexAsync.rejected, (state) => {
+      .addCase(fetchHSXValueIndexAsync.rejected, (state) => {
         state.isLoadingMarket = true;
         state.statusMarket = "failed";
       })
-      .addCase(fetchHSXValueIndexAsync.pending, (state) => {
+      .addCase(fetchHNXValueIndexAsync.pending, (state) => {
         state.statusMarket = "loading";
       })
-      .addCase(fetchHSXValueIndexAsync.fulfilled, (state, action) => {
+      .addCase(fetchHNXValueIndexAsync.fulfilled, (state, action:any) => {
         state.isLoadingMarket = true;
         state.statusMarket = "success";
-        state.valueIndexHSX = action.payload;
+        state.valueIndexHNX = action.payload;
         // console.log(state.valueIndexHSX.valueHSX);
       })
-      .addCase(fetchHSXValueIndexAsync.rejected, (state) => {
+      .addCase(fetchHNXValueIndexAsync.rejected, (state) => {
         state.isLoadingMarket = true;
         state.statusMarket = "failed";
       });

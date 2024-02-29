@@ -22,7 +22,7 @@ const style = {
 };
 const TableValueIndex = () => {
   const { listIndexHSX } = useAppSelector((state) => state.valueIndex);
-  console.log(listIndexHSX);
+  // console.log(listIndexHSX);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);

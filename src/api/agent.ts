@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { IDataCDT } from "../components/chartIndex/interface/interface.config";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -38,9 +39,9 @@ const Login ={
 }
 const chartIndex = {
   get: () => requests.get<string[]>(BASE_URL + "/chart/data.ashx?s=full"),
-  getSS: () => requests.get<string[]>(BASE_URL + `/chart/data.ashx?s=config&v=20160829061939`),
-  getTimeSS: (dataChartIndex: IRP) => requests.postFormData<string[]>(BASE_URL + "/chart/data.ashx", dataChartIndex),
-  getCDT: (value_getCDT: string) => requests.get<string[]>(BASE_URL + `/chart/data.ashx?s=${value_getCDT}`),
+  getSS: () => requests.get<any>(BASE_URL + `/chart/data.ashx?s=config&v=20160829061939`),
+  getTimeSS: (dataChartIndex: IRP) => requests.postFormData<any>(BASE_URL + "/chart/data.ashx", dataChartIndex),
+  getCDT: (value_getCDT: string) => requests.get<IDataCDT>(BASE_URL + `/chart/data.ashx?s=${value_getCDT}`),
 };
 const ValueIndex = {
   get: (floor:string) => requests.get(BASE_URL+`${floor}/data.ashx?s=index`),

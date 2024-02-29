@@ -112,9 +112,9 @@ export const fetchConfigChartIndexAsync = createAsyncThunk(
   async () => {
     try {
       const data = await agent.chartIndex.getSS();
-    //   const regex = /var\s+g_CHART_MAX_INDEX_SS\s*=\s*'([^']+)'/;
-    //   const match = data.match(regex);
-      return data as object;
+      const regex = /var\s+g_CHART_MAX_INDEX_SS\s*=\s*'([^']+)'/;
+      const match = data.match(regex);
+      return match[1];
     } catch (error) {
       console.log("error ở đây", error);
     }
@@ -235,6 +235,7 @@ const chartIndexSlice = createSlice({
       }
       state.dataChartIndexTime = dataChartTime;
       state.configChartIndex = dataChartTime.Max.toString();
+      console.log(state.configChartIndex)
     },
   },
   extraReducers: (builder) => {
@@ -253,7 +254,10 @@ const chartIndexSlice = createSlice({
         state.isLoading = false;
         state.status = "loading";
       })
-    
+      .addCase(fetchConfigChartIndexAsync.fulfilled, (state, action) => {
+        state.isLoading = true;
+        state.configChartIndex = action.payload;
+      })
     
  
   },

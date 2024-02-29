@@ -3,6 +3,9 @@ import TradingViewWidget from '../chartTradingView/TradingView';
 import { Modal, Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/configStore';
 import { setStatusTradingView } from '../chartTradingView/tradingViewSlice';
+import { LineChartGradient } from '../chartIndex/LineChartGradient';
+import SearchStockCode from '../Header/component/SearchStockCode';
+import TablePrice from '../tablePrice/TablePrice';
 
 const TableMarketWatch = () => {
   const dispatch = useAppDispatch()
@@ -12,6 +15,7 @@ const {Exchange,statusTradingView,stockCode} = useAppSelector((state=> state.cha
 
   return (
     <section className='w-full h-[701px] bg-[#1A1D1F]'>
+
       <div className='price-board_header h-[35px] bg-[#272B30]'>
       <div className="price-board-header px-2 flex">
   <div className="w-48 xl:w-56">
@@ -22,33 +26,9 @@ const {Exchange,statusTradingView,stockCode} = useAppSelector((state=> state.cha
       aria-haspopup="listbox"
       aria-labelledby="downshift-0-label"
     >
-      <div className="input-group group flex">
-        <div className="icon left-icon flex">
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth={0}
-            viewBox="0 0 24 24"
-            className="text-sm"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g>
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z" />
-            </g>
-          </svg>
-        </div>
-        <input
-          className="input-control bg-[#3f4044] p-1 rounded mx-1"
-          placeholder="Tìm kiếm CK"
-          aria-autocomplete="list"
-          aria-labelledby="downshift-0-label"
-          autoComplete="off"
-          id="downshift-0-input"
-          defaultValue=""
-        />
+      <div className="input-group group flex pt-1">
+      
+        <SearchStockCode index="left"/>
       </div>
     </div>
   </div>
@@ -900,8 +880,9 @@ const {Exchange,statusTradingView,stockCode} = useAppSelector((state=> state.cha
 
       </div>
       <div className='price-board_table'>
-        table
+      {/* <LineChartGradient/> */}
       </div>
+      <TablePrice/>
       {/* <SearchStockCode/> */}
     
   <Modal

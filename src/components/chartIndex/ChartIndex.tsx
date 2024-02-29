@@ -11,8 +11,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
   const [dataSpline, setDataSpline] = useState<any>([]);
   const [dataBar, setDataBar] = useState<any>([]);
   const [indexValue, setIndexValue] = useState<number>(0);
-  //console.log('index Value:'+indexValue,'index line:'+dataSpline, 'index dataBar:'+dataBar);
-  console.log(indexValue, dataSpline, dataBar);
+
   useEffect(() => {
     if (san === "HSX") {
       const data = getDataChart(dataChartIndex, name);
@@ -36,7 +35,6 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
   const opacityColor = colors
     ? Highcharts.color(colors[0]).setOpacity(0).get("rgba")
     : "#ffffff";
-  console.log(opacityColor);
   const options = {
     chart: {
       marginTop: 0,
@@ -223,7 +221,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
     plotOptions: {
       spline: {
         color: "#1AAF74",
-
+      
         lineWidth: 1.5,
         marker: {
           enabled: false,
@@ -239,6 +237,12 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
               fillColor: "white",
             },
           },
+        },
+        shadow : false,
+        states : {
+          hover : {
+            lineWidth : 1
+          }
         },
         zones: [
           {
@@ -280,7 +284,7 @@ const ChartIndex: React.FC<TProps> = ({ name, san }: TProps) => {
         fillColor: {
           linearGradient: [0, 0, 0, 300],
           stops: [
-            [0, "#1AAF74"],
+            [0, "#2a3d35"],
             [1, opacityColor],
           ],
         },
