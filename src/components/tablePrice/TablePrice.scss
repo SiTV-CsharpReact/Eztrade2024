@@ -1,0 +1,115 @@
+
+.table__price {
+    & .ag-header-group-cell:not(.ag-column-resizing)+.ag-header-group-cell:not(.ag-column-hover):not(.ag-header-cell-moving):hover {
+      background-color: #282828;
+    }
+  
+    & .ag-header-cell:not(.ag-column-resizing)+.ag-header-cell:not(.ag-column-hover):not(.ag-header-cell-moving):hover {
+      background-color: #282828;
+    }
+  
+    & .ag-header-cell:not(.ag-column-hover):first-of-type:not(.ag-header-cell-moving):hover,
+    .ag-header-cell:not(.ag-column-hover):first-of-type.ag-column-resizing {
+      background-color: #1d1d1d;
+    }
+    & .ag-header-cell {
+        background-color: #282828;
+    }
+    & .ag-header-group-cell {
+        background-color: #282828;
+    }
+    & .ag-header .ag-header-row:not(:first-child) .ag-header-cell {
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-color: #2f2f2f;
+    }
+    & .ag-header .ag-header-group-cell {
+        border-width: 1px 1px 1px 0px;
+        border-color: #2f2f2f;
+    }
+    & .ag-row .ag-cell{
+        border-width: 0 1px 0 0;
+        border-color: #2f2f2f;
+    }
+    & .ag-header-row:not(:first-child) .ag-header-cell:not(.ag-header-span-height.ag-header-span-total), .ag-header-row:not(:first-child) .ag-header-group-cell.ag-header-group-cell-with-group {
+        border-width: 0 1px 0 0;
+        border-color: #2f2f2f;
+    }
+    & .ag-header-cell,
+    .ag-header-cell-text,
+    .ag-header-cell-sortable .ag-header-cell-label {
+      cursor: url(../../images/menuMW/sort_full.png), auto;
+  
+    }
+    & .my-shaded-effect{
+        background-color: #000;
+    }
+    & .cell-highlight{
+        background-color: #292929;
+    }
+    & .ag-row-hover > .ag-cell{
+        background-color: #444 !important;
+      }
+     & .ag-tooltip {
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 10px 16px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #cbd0d3;
+        transition: opacity 1s;
+      }
+     & .ag-tooltip {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Mặc định ẩn tooltip */
+    transition: opacity 0.3s ease; /* Thêm transition cho opacity */
+}
+
+/* CSS cho hiển thị tooltip */
+    & .ag-tooltip.ag-tooltip-visible {
+    opacity: 1; /* Khi tooltip được hiển thị, opacity được đặt thành 1 */
+}
+}  
+.ag-theme-alpine {
+    /* replace all icons in the grid with icons from Font Awesome */
+    --ag-icon-font-family: "Font Awesome 5 Free";
+    --ag-icon-font-code-aggregation: "\f247";
+    --ag-icon-font-code-arrows: "\f0b2";
+    --ag-icon-font-code-asc: "\f062";
+    /* ... and so on - because --ag-icon-font-family sets the font for
+       all icons, a new code must be provided for every one. If you only
+       wanted to replace some icons, use --ag-icon-font-family-{icon-name} */
+  
+    /* selectively replace the the group icon with one from Material Design Icons */
+    --ag-icon-font-family-group: "Material Design Icons";
+    --ag-icon-font-code-group: "\F0328";
+    --ag-icon-font-color-group: red;
+    --ag-icon-font-weight-group: normal;
+  }
+  .custom-tabs .ant-tabs-tab {
+    padding:1px 0;
+   color: rgb(230, 230, 230); /* Tùy chỉnh màu nền của tab */
+  } 
+  .custom-tabs .ant-tabs-nav::before {
+    border-bottom: none; /* Loại bỏ đường viền bên dưới của tab */
+  }
+  .custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #1aaf74 !important; /* Tùy chỉnh màu nền của tab khi được chọn */
+  }
+  .custom-tabs .ant-tabs-ink-bar{
+    background: #1aaf74 !important; /* Tùy chỉnh màu nền của tab khi được chọn */
+  }
+ 
+//   .custom-tabs .ant-tabs-tab:hover {
+//     background-color: #your_hover_color; /* Tùy chỉnh màu nền của tab khi di chuột vào */
+//   }
+  
+//   .custom-tabs .ant-tabs-tab {
+//     color: #your_text_color; /* Tùy chỉnh màu của văn bản trong tab */
+//   }

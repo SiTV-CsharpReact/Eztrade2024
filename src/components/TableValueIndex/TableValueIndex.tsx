@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 import { SettingIcon } from "../ui/icons/SettingIcon";
 import { CloseIcon } from "../ui/icons/CloseIcon";
 import { useAppSelector } from "../../store/configStore";
+import { setColorMenuMarket } from "../../util/util";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,8 +30,17 @@ const TableValueIndex = () => {
   const handleClose = () => setOpen(false);
   const colDefs: ColDef[] = [
     { field: "IndexId", headerName: "Chỉ số", width: 140, headerClass: "oke" },
-    { field: "IndexValue", headerName: "Điểm", width: 90 },
-    { field: "Change", headerName: "+/-", width: 80 },
+    { field: "IndexValue",
+    cellStyle: (params: any) => ({
+      fontWeight: "",
+      color: '#1AAF74',
+    }),
+    headerName: "Điểm", width: 90 },
+    { field: "Change",
+    cellStyle: (params: any) => ({
+      fontWeight: "",
+      color: '#1AAF74',
+    }), headerName: "+/-", width: 80 },
     { field: "TotalSharesAOM", headerName: "KLGD (Triệu)", width: 100 },
     { field: "TotalValuesAOM", headerName: "GTGD (Tỷ)", width: 90 },
     {

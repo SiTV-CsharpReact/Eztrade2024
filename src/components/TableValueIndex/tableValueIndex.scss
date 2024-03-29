@@ -2,13 +2,13 @@
     border-radius: 4px;
     background-color: #1A1D1F;
     font-size: 12px;
-    color:#c1c1c1;
+    color:#EFEFEF;
     font-family: manrope;
     
     & .ag-root{
         & .ag-header{
             & .ag-header-cell-text{
-                color:#c1c1c1
+                color:#EFEFEF
             }
             .ag-right-aligned-header .ag-cell-label-container {
                 flex-direction: row;
@@ -19,7 +19,7 @@
         }
         & .ag-body{
             & .ag-cell{
-                color:#c1c1c1
+                color:#EFEFEF
             }
            
         }
